@@ -1,0 +1,10 @@
+# JetBrains / PyCharm
+.idea/
+*.iml
+
+# Python
+__pycache__/
+.venv/
+env/
+*.egg-info/
+.env
