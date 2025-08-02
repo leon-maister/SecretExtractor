@@ -1,3 +1,8 @@
+#  Note: the apy-key is kept in .env file, but this file is not uploaded to github and not part docker file
+#  for this purpose, the .env file should be uploaded to the machine where docker will run and please run the
+#  command below:
+# docker run --rm --env-file .env secret-extractor:1.0.2
+
 import akeyless
 
 import os
@@ -7,6 +12,8 @@ load_dotenv()
 
 ACCESS_ID = os.getenv("AKEYLESS_ACCESS_ID")
 ACCESS_KEY = os.getenv("AKEYLESS_ACCESS_KEY")
+
+print (ACCESS_ID)
 
 # using public API endpoint
 configuration = akeyless.Configuration(
@@ -33,3 +40,4 @@ res = api.dynamic_secret_get_value(body)
 print(res['user'])
 print("Dynamic Secret: " + (res['user']))
 print("Dynamic Secret Password: " + (res['password']))
+
