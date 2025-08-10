@@ -1,10 +1,12 @@
 #  Note: the apy-key is kept in .env file, but this file is not uploaded to github and not part docker file
 #  for this purpose, the .env file should be uploaded to the machine where docker will run and please run the
 #  command below:
-# docker run --rm --env-file .env leonmaister/secret-extractor:1.0.0
-# to build: docker docker build . -t leonmaister/secret-extractor:1.0.0
-# #to push docker:
+#      to build:
+# docker build . -t leonmaister/secret-extractor:1.0.0
+#     to push docker:
 # docker push leonmaister/secret-extractor:1.0.0
+#     to run
+# docker run --rm --env-file .env leonmaister/secret-extractor:1.0.0
 
 import akeyless
 
@@ -13,8 +15,11 @@ import os
 from dotenv import load_dotenv, find_dotenv
 
 if os.path.isfile(".env"):
+    print ("file .env is exists. Load to the environment")
     path = find_dotenv()
     load_dotenv(".env")
+else:
+    print("file .env does not exists. Data will be loaded from the k8s secret to the environment")
 
 
 ACCESS_ID = os.getenv("AKEYLESS_ACCESS_ID")
